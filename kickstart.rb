@@ -225,5 +225,5 @@ after_bundle do
   ########################################
   git :init
   git add: '.'
-  git commit: "-m 'Initial commit with kickstart -> https://github.com/bastienrobert/rails-template"
+  git commit: "-m 'Initial commit with kickstart -> https://github.com/bastienrobert/rails-template'"
 end
