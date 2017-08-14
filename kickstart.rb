@@ -63,7 +63,9 @@ gsub_file('config/environments/development.rb', /config\.assets\.debug.*/, 'conf
 
 # Environment variables
 ########################################
-file 'config/local_env.yml'
+file 'config/local_env.yml', <<-YAML
+  KEY: VALUE
+YAML
 run 'rm config/application.rb'
 file 'config/application.rb', <<-RUBY
   require_relative 'boot'
@@ -199,7 +201,7 @@ file 'README.md', markdown_file_content, force: true
 # AFTER BUNDLE
 ########################################
 after_bundle do
-  
+
   # Routes
   ########################################
   route "root to: 'application#home'"
