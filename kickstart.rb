@@ -41,12 +41,6 @@ file 'Procfile', <<-YAML
 web: bundle exec puma -C config/puma.rb
 YAML
 
-# Spring conf file
-########################################
-inject_into_file 'config/spring.rb', before: ').each { |path| Spring.watch(path) }' do
-  '  config/application.yml\n'
-end
-
 # Assets
 ########################################
 run 'rm app/assets/stylesheets/*'
@@ -201,6 +195,10 @@ file 'README.md', markdown_file_content, force: true
 # AFTER BUNDLE
 ########################################
 after_bundle do
+
+  # Stop spring
+  ########################################
+  run 'spring stop'
 
   # Routes
   ########################################
