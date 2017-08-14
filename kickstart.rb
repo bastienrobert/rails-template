@@ -199,10 +199,7 @@ file 'README.md', markdown_file_content, force: true
 # AFTER BUNDLE
 ########################################
 after_bundle do
-  # Generate a clear database
-  ########################################
-  rake 'db:drop db:create db:migrate'
-
+  
   # Routes
   ########################################
   route "root to: 'application#home'"
