@@ -201,7 +201,7 @@ file 'README.md', markdown_file_content, force: true
 after_bundle do
   # Generate a clear database
   ########################################
-  rails 'db:drop db:create db:migrate'
+  rake 'db:drop db:create db:migrate'
 
   # Routes
   ########################################
