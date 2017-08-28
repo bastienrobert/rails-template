@@ -46,7 +46,7 @@ YAML
 # Assets
 ########################################
 run 'rm app/assets/stylesheets/*'
-file 'app/assets/javascripts/application.scss'
+file 'app/assets/stylesheets/application.scss'
 
 run 'rm app/assets/javascripts/application.js'
 file 'app/assets/javascripts/application.js', <<-JS
