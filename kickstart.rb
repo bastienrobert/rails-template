@@ -88,7 +88,7 @@ run 'mkdir app/views/layouts/partials'
 file 'app/views/layouts/partials/_header.html.erb'
 file 'app/views/layouts/partials/_footer.html.erb'
 run 'rm app/views/layouts/application.html.erb'
-template 'app/views/layouts/application.html.erb.tt'
+copy_file 'app/views/layouts/application.html.erb'
 
 # Cover page
 ########################################

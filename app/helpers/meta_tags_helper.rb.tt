@@ -9,9 +9,10 @@ module MetaTagsHelper
 
   def meta_image
     meta_image = (content_for?(:meta_image) ? content_for(:meta_image) : DEFAULT_META["meta_image"])
+    meta_image.starts_with?("http") ? meta_image : image_url(meta_image)
   end
 
   def meta_product
-    return DEFAULT_META["meta_product_name"])
+    return DEFAULT_META["meta_product_name"]
   end
 end
