@@ -126,4 +126,16 @@ after_bundle do
   git :init
   git add: '.'
   git commit: "-m 'Initial commit with kickstart -> https://github.com/bastienrobert/rails-template'"
+
+  # Using devise
+  ########################################
+  if use_devise
+    run 'rails generate devise:install'
+    run 'rails generate devise MODEL'
+    run 'rails generate devise:views'
+
+    git :init
+    git add: '.'
+    git commit: "-m 'Gem devise initialized & views has been generated'"
+  end
 end
