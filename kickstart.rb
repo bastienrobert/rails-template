@@ -134,7 +134,11 @@ after_bundle do
   ########################################
   if use_devise
     run 'rails generate devise:install'
-    run 'rails generate devise MODEL'
+    user_model = ask('Devise model name (set blank for User):')
+    if user_model == '' || user_model == nil
+      user_model = 'User'
+    end
+    run "rails generate devise #{user_model}"
     run 'rails generate devise:views'
 
     git :init
@@ -159,4 +163,14 @@ after_bundle do
       git commit: "-m 'Carrierwave #{carrierwave_model} uploader generated'"
     end
   end
+
+  # Auto-generate ERD
+  ########################################
+  copy_file '.erdconfig'
+  run 'rails generate erd:install'
+
+  # Database migration
+  ########################################
+  run 'rails db:migrate'
+
 end
