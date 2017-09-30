@@ -46,8 +46,11 @@ gem_group :production do
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-use_devise = yes?("Would you like to add devise?")
+use_devise = yes?("Would you like to add devise? (Y/n)")
 gem "devise" if use_devise
+
+use_carrierwave = yes?("Would you like to add carrierwave? (Y/n)")
+gem 'carrierwave', '~> 1.0' if use_carrierwave
 
 # Ruby version
 ########################################
@@ -137,5 +140,23 @@ after_bundle do
     git :init
     git add: '.'
     git commit: "-m 'Gem devise initialized & views has been generated'"
+  end
+
+  # Using carrierwave
+  ########################################
+  if use_carrierwave
+    configure_carrierwave = yes?('Do you want to create a Carrierwave uploader now? (Y/n)')
+    if configure_carrierwave
+      puts "Set a name for your Carrierwave Uploader"
+      carrierwave_model = ask('Uploader name (set blank for Image):')
+      if carrierwave_model == '' || carrierwave_model == nil
+        carrierwave_model = 'Image'
+      end
+      run "rails generate uploader #{carrierwave_model}"
+
+      git :init
+      git add: '.'
+      git commit: "-m 'Carrierwave #{carrierwave_model} uploader generated'"
+    end
   end
 end
