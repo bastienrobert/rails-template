@@ -73,6 +73,11 @@ template 'config/local_env.yml.tt'
 run 'rm config/application.rb'
 template 'config/application.rb.tt'
 
+# Database config
+########################################
+remove_file "config/database.yml"
+template "config/database.yml.tt"
+
 # Assets
 ########################################
 run 'rm app/assets/stylesheets/*'
